@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+if [ $HOSTNAME == "server" ]; then
+sudo apt-get install nfs-kernel-server nfs-common portmap -y
+sudo mkdir /home/nfs
+sudo chown nobody:nogroup /home/nfs
+sudo nano /etc/exports
+#/home/nfs 192.168.4.34(rw,sync,no_root_squash,no_subtree_check)
+
+#share
+sudo exportfs -a
+/etc/init.d/nfs-kernel-server start
+sudo mount -t nfs 192.168.4.34:/home/nfs /mnt/nfs
+
+elife [$HOSTNAME == "client" ]; then
+
+sudo apt-get install nfs-common
+
+
+else 
+echo "Faild to find HOSTNAME"
+fi 
+
