@@ -1,0 +1,2 @@
+sudo cp /home/*/Documents/backup.sh /etc/cron.daily/
+tar -cvzpf /home/nfs/${date}-${time}.tar.gz --exclude=/home/nfs/${date}-${time}.tar.gz /root/.* /home/*/.*
